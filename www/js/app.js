@@ -48,9 +48,13 @@ function go() {
       req.onsuccess = function() {
         var endpoint = req.result;
         $.post('/endpoint', { endpoint: endpoint })
+        console.log('-*- chens: endpoint: ' + endpoint);
       }
     }
-  }
+  };
+  regs.onerror = function(e) {
+    console.log('-*- chens: error when retrieving registrations');
+  };
 
   $('#theform').submit(function() {
     $('#chat').append('<li class="muted">&lt;' + nick + '&gt;: ' + $('#theform input[name="message"]').val() + '</li>');
@@ -68,7 +72,7 @@ $(function() {
       go();
     } else {
       navigator.mozApps
-        .install('http://simplechat.nikhilism.com/static/manifest.webapp');
+        .install('http://10.247.24.121:9100/static/manifest.webapp');
     }
   }
 });

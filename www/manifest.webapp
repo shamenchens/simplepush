@@ -10,8 +10,8 @@
   "installs_allowed_from": ["*"],
   "default_locale": "en",
   "permissions": {
-    "push": {},
-    "desktop-notification": {}
+    "push": {"description": "Required for being updated"},
+    "desktop-notification": {"description": "Required for being noticed"}
   },
   "messages": [
     { "push": "/" },
