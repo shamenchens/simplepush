@@ -67,6 +67,3 @@ def endpoint():
     # Since this is a new endpoint, we can send the version as 1.
     requests.put(endpoint, data={'version': 1})
     return 'OK'
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9100)
