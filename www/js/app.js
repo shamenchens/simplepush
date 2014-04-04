@@ -72,7 +72,7 @@ $(function() {
       go();
     } else {
       navigator.mozApps
-        .install('http://10.247.24.121:9100/static/manifest.webapp');
+        .install('http://simple-push-demo.herokuapp.com/static/manifest.webapp');
     }
   }
 });
