@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, abort, session, make_response, send_file, redirect
+import os
+import redis
 import json
 import requests
-from redis import Redis
 from Queue import Queue
 from threading import Thread
 
 app = Flask(__name__, static_url_path='/static', static_folder='www')
 app.secret_key = 'topseekret'
-redis = Redis()
+redis_url = os.getenv('REDISTOGO_URL', 'redis://redistogo:42f957cc66610fc183326f376fcfcbd6@grideye.redistogo.com:10310/ ')
+redis = redis.from_url(redis_url)
 
 MAX_MESSAGES = 50
 
@@ -65,9 +67,3 @@ def endpoint():
     # Since this is a new endpoint, we can send the version as 1.
     requests.put(endpoint, data={'version': 1})
     return 'OK'
-
-if __name__ == '__main__':
-    t = Thread(target=notify)
-    t.daemon = True
-    t.start()
-    app.run(host='0.0.0.0', debug=True, port=9100)
